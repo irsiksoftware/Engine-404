@@ -164,14 +164,14 @@ public class PikminCarryObject : MonoBehaviour, IPikminCarry
 		if (GameManager.IsPaused)
 		{
 			_MoveVector = Vector3.zero;
-			_Rigidbody.velocity = Vector3.zero;
+			_Rigidbody.linearVelocity = Vector3.zero;
 			return;
 		}
 
 		RotateUpwards();
 
-		float storedY = _Rigidbody.velocity.y;
-		_Rigidbody.velocity = _MoveVector;
+		float storedY = _Rigidbody.linearVelocity.y;
+		_Rigidbody.linearVelocity = _MoveVector;
 		_MoveVector = new(0, storedY, 0);
 	}
 
@@ -266,7 +266,7 @@ public class PikminCarryObject : MonoBehaviour, IPikminCarry
 		_CurrentMoveSpeed = Mathf.SmoothStep(_CurrentMoveSpeed, _CurrentSpeedTarget, _AccelerationSpeed * Time.deltaTime);
 
 		Vector3 newVelocity = MathUtil.DirectionFromTo(transform.position, position) * _CurrentMoveSpeed;
-		newVelocity.y = _Rigidbody.velocity.y;
+		newVelocity.y = _Rigidbody.linearVelocity.y;
 		_MoveVector = newVelocity;
 	}
 

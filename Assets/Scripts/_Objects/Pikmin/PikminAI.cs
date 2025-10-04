@@ -368,7 +368,7 @@ public class PikminAI : MonoBehaviour, IHealth, IComparable, IInteraction
 
         if (_Transform.position.y < _MinimumY)
         {
-            _Rigidbody.velocity = Vector3.zero;
+            _Rigidbody.linearVelocity = Vector3.zero;
             _Transform.position = _PlayerTransform.position + Vector3.up * 5.0f;
         }
 
@@ -455,8 +455,8 @@ public class PikminAI : MonoBehaviour, IHealth, IComparable, IInteraction
             _Transform.rotation = Quaternion.Euler(0f, newYRotation, 0f);
         }
 
-        float storedY = _Rigidbody.velocity.y;
-        _Rigidbody.velocity = _DirectionVector + _AddedVelocity;
+        float storedY = _Rigidbody.linearVelocity.y;
+        _Rigidbody.linearVelocity = _DirectionVector + _AddedVelocity;
         _DirectionVector = Vector3.up * storedY;
 
         _AddedVelocity = Vector3.Lerp(_AddedVelocity, Vector3.zero, 10 * Time.fixedDeltaTime);
@@ -491,7 +491,7 @@ public class PikminAI : MonoBehaviour, IHealth, IComparable, IInteraction
             case PikminStates.Idle:
             case PikminStates.RunTowards:
             {
-                Vector2 horizonalVelocity = new(_Rigidbody.velocity.x, _Rigidbody.velocity.z);
+                Vector2 horizonalVelocity = new(_Rigidbody.linearVelocity.x, _Rigidbody.linearVelocity.z);
                 _Animator.SetBool(Animations.Walking, horizonalVelocity.magnitude >= 0.1f);
                 break;
             }
@@ -969,7 +969,7 @@ public class PikminAI : MonoBehaviour, IHealth, IComparable, IInteraction
         }
 
         Vector3 newVelocity = delta * _CurrentMoveSpeed;
-        newVelocity.y = _Rigidbody.velocity.y;
+        newVelocity.y = _Rigidbody.linearVelocity.y;
         _DirectionVector = newVelocity;
     }
 

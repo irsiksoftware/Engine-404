@@ -43,7 +43,7 @@ public class MovementEngine : MonoBehaviour
 
 		_CurrentSmoothVelocity = Vector3.Lerp(
 			_SmoothVelocity,
-			Vector3.up * _Rigidbody.velocity.y,
+			Vector3.up * _Rigidbody.linearVelocity.y,
 			_DeaccelerateCurve.Evaluate(_SmoothVelocityTimer / _DeaccelerateTime)
 		);
 
@@ -62,7 +62,7 @@ public class MovementEngine : MonoBehaviour
 			return;
 		}
 
-		float storedY = _Rigidbody.velocity.y;
+		float storedY = _Rigidbody.linearVelocity.y;
 
 		if (_CurrentSmoothVelocity != Vector3.zero)
 		{
@@ -74,7 +74,7 @@ public class MovementEngine : MonoBehaviour
 
 	public void SetVelocity(Vector3 velocity)
 	{
-		_Rigidbody.velocity = velocity;
+		_Rigidbody.linearVelocity = velocity;
 	}
 
 	#endregion

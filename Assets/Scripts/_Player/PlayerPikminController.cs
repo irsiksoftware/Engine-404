@@ -337,7 +337,7 @@ public class PlayerPikminController : MonoBehaviour
 
 				if (_ThrownVelocity != Vector3.zero)
 				{
-					rigidbody.velocity = _ThrownVelocity;
+					rigidbody.linearVelocity = _ThrownVelocity;
 				}
 
 				_CanPlayerAttack = true;

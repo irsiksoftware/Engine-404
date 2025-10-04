@@ -93,7 +93,7 @@ public class FlintBeetle : Entity, IPikminSquish, IInteraction
 
 		if (_MoveDirection != Vector3.zero)
 		{
-			_Rigidbody.velocity = _MoveDirection + Vector3.down;
+			_Rigidbody.linearVelocity = _MoveDirection + Vector3.down;
 			_MoveDirection = Vector3.Lerp(_MoveDirection, Vector3.zero, 12.5f * Time.fixedDeltaTime);
 		}
 	}
@@ -376,7 +376,7 @@ public class FlintBeetle : Entity, IPikminSquish, IInteraction
 			_Transform.position + Vector3.up * 2.5f,
 			Quaternion.Euler(0, Random.Range(0.0f, 360.0f), 0.0f)
 		);
-		go.GetComponent<Rigidbody>().velocity = Vector3.up * 35.0f + MathUtil.XZToXYZ(Random.insideUnitCircle) * 50.0f;
+		go.GetComponent<Rigidbody>().linearVelocity = Vector3.up * 35.0f + MathUtil.XZToXYZ(Random.insideUnitCircle) * 50.0f;
 	}
 
 	public void ANIM_RunLoop()
